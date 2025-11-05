@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicas Práticas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(72, 219, 251, 0.6); }
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #fff;
+            opacity: 0.9;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            margin: 0 auto;
+            width: 0;
+            animation: typing 3.5s steps(40) 1s forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        nav a i {
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border-color: #fff;
+        }
+        nav a:hover i {
+            transform: rotate(360deg);
+        }
+        /* Cores no hover */
+        nav a:nth-child(1):hover { border-color: #ff6b6b; }   /* Catálogo */
+        nav a:nth-child(2):hover { border-color: #48dbfb; }   /* Projetos */
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            animation: fadeIn 2s ease-out 1s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to { opacity: 0.8; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            nav { flex-direction: column; align-items: center; }
+            nav a { width: 80%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dicas Práticas</h1>
+        <p class="subtitle">Se não conseguir tirar sua dúvida, leia novamente até entender!</p>
+    </header>
+
+    <main>
+        <nav>
+            <a href="./catalogo.html">
+                <i class="fas fa-book"></i> Catálogo de Perguntas
+            </a>
+            <a href="./progetos.html">
+                <i class="fas fa-robot"></i> Projetos de Robótica
+            </a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>© 2025 Dicas Práticas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Efeito de partículas ao mover o mouse
+        document.addEventListener('mousemove', (e) => {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.background = 'rgba(255, 255, 255, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = e.pageX + 'px';
+            particle.style.top = e.pageY + 'px';
+            particle.style.animation = 'float 1s ease-out forwards';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        });
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) scale(1); opacity: 0.8; }
+                100% { transform: translateY(-100px) scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

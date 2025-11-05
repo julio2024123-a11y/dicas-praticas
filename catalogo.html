@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Perguntas - Dicas Práticas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow { from { text-shadow: 0 0 20px rgba(255,255,255,0.5); } to { text-shadow: 0 0 40px rgba(255,255,255,0.8); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Lista de perguntas */
+        .pergunta {
+            background: rgba(255, 255, 255, 0.2);
+            margin: 15px 0;
+            padding: 18px;
+            border-radius: 15px;
+            border-left: 5px solid #feca57;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .pergunta:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(10px);
+            border-left-color: #ff6b6b;
+        }
+        .pergunta h3 {
+            margin: 0 0 8px 0;
+            color: #fff;
+            font-size: 1.3rem;
+        }
+        .pergunta p {
+            margin: 0;
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+
+        /* Formulário de nova pergunta */
+        .form-container {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            border: 2px dashed rgba(255, 255, 255, 0.4);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            color: #fff;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            font-size: 1rem;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 15px rgba(72, 219, 251, 0.5);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn-enviar {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #48dbfb, #1dd1a1);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .btn-enviar:hover {
+            background: linear-gradient(45deg, #1dd1a1, #48dbfb);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .voltar {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s;
+        }
+        .voltar:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+            border-color: #ff6b6b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .form-container h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Catálogo de Perguntas</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- Perguntas existentes -->
+        <div class="pergunta">
+            <h3>Como ligar um LED com Arduino?</h3>
+            <p>Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</p>
+        </div>
+        <div class="pergunta">
+            <h3>Qual a diferença entre servo e motor DC?</h3>
+            <p>Servo controla ângulo com precisão. Motor DC gira continuamente.</p>
+        </div>
+        <div class="pergunta">
+            <h3>Como usar sensor ultrassônico HC-SR04?</h3>
+            <p>Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</p>
+        </div>
+
+        <!-- Formulário para nova pergunta -->
+        <div class="form-container">
+            <h2>Não achou sua dúvida? Envie aqui!</h2>
+            <form id="formPergunta" onsubmit="enviarPergunta(event)">
+                <div class="form-group">
+                    <label for="nome">Seu Nome</label>
+                    <input type="text" id="nome" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Seu E-mail</label>
+                    <input type="email" id="email" placeholder="Ex: joao@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="pergunta">Sua Pergunta</label>
+                    <textarea id="pergunta" placeholder="Descreva sua dúvida com detalhes..." required></textarea>
+                </div>
+                <button type="submit" class="btn-enviar">
+                    Enviar Pergunta
+                </button>
+            </form>
+        </div>
+
+        <a href="index.html" class="voltar">
+            Voltar ao Início
+        </a>
+    </div>
+
+    <footer>
+        <p>© 2025 Dicas Práticas</p>
+    </footer>
+
+    <!-- Script para montar o e-mail -->
+    <script>
+        function enviarPergunta(event) {
+            event.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const pergunta = document.getElementById('pergunta').value.trim();
+
+            if (!nome || !email || !pergunta) {
+                alert('Preencha todos os campos!');
+                return;
+            }
+
+            const assunto = encodeURIComponent(`[DÚVIDA] Pergunta de ${nome}`);
+            const corpo = encodeURIComponent(
+                `Nome: ${nome}\n` +
+                `E-mail: ${email}\n\n` +
+                `Pergunta:\n${pergunta}\n\n` +
+                `---\nEnviado via Dicas Práticas`
+            );
+
+            const mailtoLink = `mailto:julio.2024123@aluno.pedreira.org?subject=${assunto}&body=${corpo}`;
+            window.location.href = mailtoLink;
+
+            // Opcional: limpar formulário após envio
+            setTimeout(() => {
+                document.getElementById('formPergunta').reset();
+                alert('E-mail aberto! Envie a mensagem para confirmar.');
+            }, 500);
+        }
+    </script>
+
+    <!-- Efeito de partículas -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.background = 'rgba(255, 255, 255, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = e.pageX + 'px';
+            particle.style.top = e.pageY + 'px';
+            particle.style.animation = 'float 1s ease-out forwards';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        });
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) scale(1); opacity: 0.8; }
+                100% { transform: translateY(-100px) scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos de Robótica - Dicas Práticas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+            to { text-shadow: 0 0 40px rgba(255,255,255,0.8), 0 0 60px rgba(72,219,251,0.6); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        .project-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            border-color: #48dbfb;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .no-image {
+            background: linear-gradient(135deg, #00979D, #006064);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .project-content {
+            padding: 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .arduino-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #00979D, #00bcd4);
+            color: white;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            align-self: flex-start;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            margin: 8px 0;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: #f0f0f0;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #48dbfb, #1dd1a1);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.4s;
+            align-self: flex-start;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .project-link:hover {
+            background: linear-gradient(45deg, #1dd1a1, #48dbfb);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .voltar {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 50px auto 0;
+            padding: 14px 30px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .voltar:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-5px);
+            border-color: #ff6b6b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 70px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .container { grid-template-columns: 1fr; }
+            .project-title { font-size: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Projetos de Robótica</h1>
+    </header>
+
+    <div class="container">
+
+        <!-- Projeto 1 -->
+        <div class="project-card">
+            <img src="https://i.ytimg.com/vi/5e8k5e9iL8w/maxresdefault.jpg" alt="Robô Seguidor de Linha" class="project-img">
+            <div class="project-content">
+                <span class="arduino-badge">ARDUINO UNO</span>
+                <h3 class="project-title">Robô Seguidor de Linha</h3>
+                <p class="project-description">
+                    Robô autônomo que segue uma linha preta usando sensores TCRT5000 e algoritmo PID para maior precisão e velocidade.
+                </p>
+                <a href="https://www.youtube.com/watch?v=OjdDcRlEti4&t=32s" target="_blank" class="project-link">
+                    Ver no YouTube
+                </a>
+            </div>
+        </div>
+
+        <!-- Projeto 2 -->
+        <div class="project-card">
+            <div class="no-image">Braço Robótico 3D</div>
+            <div class="project-content">
+                <span class="arduino-badge">ARDUINO MEGA</span>
+                <h3 class="project-title">Braço Robótico</h3>
+                <p class="project-description">
+                    Braço robótico impresso em 3D controlado por Arduino Mega com 6 servos e interface via potenciômetros.
+                </p>
+                <a href="https://www.youtube.com/watch?v=Ecw3kCo4AdQ&t=30s" target="_blank" class="project-link">
+                    Ver no YouTube
+                </a>
+            </div>
+        </div>
+
+        <!-- Projeto 3 -->
+        <div class="project-card">
+            <img src="https://i.ytimg.com/vi/9kG8T2Uoq0k/maxresdefault.jpg" alt="Carro Robô Bluetooth" class="project-img">
+            <div class="project-content">
+                <span class="arduino-badge">ARDUINO UNO</span>
+                <h3 class="project-title">Carro Robô Bluetooth</h3>
+                <p class="project-description">
+                    Carrinho controlado por aplicativo Android via Bluetooth (HC-05). Inclui sensores de obstáculo e buzina.
+                </p>
+                <a href="https://www.youtube.com/watch?v=EYh8D_8wi0A" target="_blank" class="project-link">
+                    Ver no YouTube
+                </a>
+            </div>
+        </div>
+
+        <!-- Projeto 4 -->
+        <div class="project-card">
+            <img src="https://i.ytimg.com/vi/ok15fq5R9BI/maxresdefault.jpg" alt="Robô Autônomo" class="project-img">
+            <div class="project-content">
+                <span class="arduino-badge">ARDUINO UNO</span>
+                <h3 class="project-title">Robô Autônomo</h3>
+                <p class="project-description">
+                    Robô que desvia de obstáculos automaticamente usando sensor ultrassônico HC-SR04.
+                </p>
+                <a href="https://www.youtube.com/watch?v=ok15fq5R9BI" target="_blank" class="project-link">
+                    Ver no YouTube
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="voltar">
+        Voltar ao Início
+    </a>
+
+    <footer>
+        <p>© 2025 Dicas Práticas. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Efeito de partículas -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.background = 'rgba(255, 255, 255, 0.6)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = e.pageX + 'px';
+            particle.style.top = e.pageY + 'px';
+            particle.style.animation = 'float 1s ease-out forwards';
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1000);
+        });
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) scale(1); opacity: 0.8; }
+                100% { transform: translateY(-100px) scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
