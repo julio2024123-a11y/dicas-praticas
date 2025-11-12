@@ -45,7 +45,6 @@
             animation: fadeIn 1.5s ease-out;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        /* Lista de perguntas */
         .pergunta {
             background: rgba(255, 255, 255, 0.2);
             margin: 15px 0;
@@ -70,7 +69,6 @@
             font-size: 1rem;
             color: #f0f0f0;
         }
-        /* Formulário de nova pergunta */
         .form-container {
             margin-top: 40px;
             padding: 25px;
@@ -175,57 +173,170 @@
         <h1>Catálogo de Perguntas</h1>
     </header>
     <div class="container">
-        <!-- Perguntas existentes + novas -->
+
+        <!-- === 32 PERGUNTAS PRÁTICAS === -->
+
         <div class="pergunta">
             <h3>Como ligar um LED com Arduino?</h3>
             <p>Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</p>
         </div>
+
         <div class="pergunta">
             <h3>Qual a diferença entre servo e motor DC?</h3>
             <p>Servo controla ângulo com precisão. Motor DC gira continuamente.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como usar sensor ultrassônico HC-SR04?</h3>
             <p>Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como usar um botão com Arduino?</h3>
             <p>Conecte uma perna ao 5V, outra ao pino digital + resistor pull-down 10kΩ ao GND.</p>
         </div>
+
         <div class="pergunta">
             <h3>O que é PWM e como usar?</h3>
             <p>PWM simula sinal analógico. Use <code>analogWrite(pino, 0-255)</code> em pinos com ~.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como ler sensor de temperatura LM35?</h3>
             <p>Conecte saída ao pino analógico. Valor = <code>analogRead(A0) * 0.488</code> → °C.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como controlar um relé com Arduino?</h3>
             <p>Use transistor NPN (ex: BC547) ou módulo relé. Acione com <code>digitalWrite()</code>.</p>
         </div>
+
         <div class="pergunta">
             <h3>Qual a diferença entre analogRead e digitalRead?</h3>
             <p><code>analogRead</code>: 0-1023 (10 bits). <code>digitalRead</code>: HIGH ou LOW.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como usar display LCD 16x2 com I2C?</h3>
             <p>Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como conectar múltiplos sensores?</h3>
             <p>Use pinos diferentes ou barramento I2C (mesmo endereço? Mude com jumper A0/A1).</p>
         </div>
+
         <div class="pergunta">
             <h3>Como usar o Serial Monitor?</h3>
             <p>No <code>setup()</code>: <code>Serial.begin(9600)</code>. Envie com <code>Serial.println()</code>.</p>
         </div>
+
         <div class="pergunta">
             <h3>Como evitar "ruído" em sensores analógicos?</h3>
             <p>Use capacitor 0.1µF entre pino e GND + média de várias leituras.</p>
         </div>
 
-        <!-- Formulário para nova pergunta -->
+        <div class="pergunta">
+            <h3>Como usar buzzer com Arduino?</h3>
+            <p>Conecte perna longa ao pino digital, curta ao GND. Use <code>tone(pino, frequência)</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como fazer um LED piscar?</h3>
+            <p>Use <code>digitalWrite(LED, HIGH); delay(500); digitalWrite(LED, LOW); delay(500);</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar potenciômetro?</h3>
+            <p>Conecte terminal central ao pino analógico (A0). Outros dois: 5V e GND.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor de luz (LDR)?</h3>
+            <p>Divisor de tensão com resistor 10kΩ. Leia com <code>analogRead()</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar módulo Bluetooth HC-05?</h3>
+            <p>Conecte TX → RX Arduino, RX → TX. Use <code>SoftwareSerial</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar cartão SD com Arduino?</h3>
+            <p>Use biblioteca <code>SD</code>. Pino CS geralmente no 4 (Uno) ou 10 (Mega).</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar motor de passo?</h3>
+            <p>Use driver ULN2003 ou A4988. Controle com biblioteca <code>Stepper</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor PIR (movimento)?</h3>
+            <p>Conecte saída ao pino digital. Leia com <code>digitalRead()</code>. Tem delay interno.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar joystick analógico?</h3>
+            <p>X → A0, Y → A1, SW (botão) → pino digital com pull-up.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor de umidade do solo?</h3>
+            <p>Conecte saída analógica ao A0. Valores: seco (~1023), úmido (~300).</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar RTC DS3231?</h3>
+            <p>Conecte via I2C. Use biblioteca <code>RTClib</code>. Muito preciso!</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar matriz de LED 8x8?</h3>
+            <p>Use driver MAX7219. Biblioteca <code>LedControl</code>. Fácil de animar!</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar ESP8266 com Arduino?</h3>
+            <p>Conecte via Serial (TX/RX). Use <code>AT commands</code> ou como WiFi shield.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor de gás MQ-2?</h3>
+            <p>Conecte AO ao pino analógico. Calibre em ar limpo antes.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar interrupt com botão?</h3>
+            <p>Use <code>attachInterrupt(digitalPinToInterrupt(pino), funcao, RISING)</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar EEPROM do Arduino?</h3>
+            <p>Inclua <code>#include &lt;EEPROM.h&gt;</code>. Salve com <code>EEPROM.write(addr, val)</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar millis() em vez de delay()?</h3>
+            <p>Evita travar o código. Ex: <code>if (millis() - ultimaVez >= 1000) { ... }</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor de cor TCS3200?</h3>
+            <p>Selecione filtro (S2/S3), leia frequência com <code>pulseIn()</code>.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar shield Ethernet?</h3>
+            <p>Use biblioteca <code>Ethernet</code>. Configure IP fixo ou DHCP.</p>
+        </div>
+
+        <div class="pergunta">
+            <h3>Como usar sensor de inclinação?</h3>
+            <p>Saída digital: HIGH quando inclinado. Use como botão.</p>
+        </div>
+
+        <!-- Formulário -->
         <div class="form-container">
             <h2>Não achou sua dúvida? Envie aqui!</h2>
             <form id="formPergunta" onsubmit="enviarPergunta(event)">
@@ -246,15 +357,17 @@
                 </button>
             </form>
         </div>
+
         <a href="index.html" class="voltar">
             Voltar ao Início
         </a>
     </div>
+
     <footer>
         <p>© 2025 Dicas Práticas</p>
     </footer>
 
-    <!-- Script para montar o e-mail -->
+    <!-- Script do formulário -->
     <script>
         function enviarPergunta(event) {
             event.preventDefault();
