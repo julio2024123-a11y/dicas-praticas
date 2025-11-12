@@ -17,178 +17,126 @@
             padding: 40px 20px;
         }
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            animation: fadeInDown 1s ease-out;
-        }
+
+        header { text-align: center; margin-bottom: 40px; animation: fadeInDown 1s ease-out; }
         h1 {
-            font-size: 3rem;
-            font-weight: 900;
+            font-size: 3rem; font-weight: 900;
             background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
             animation: glow 2s infinite alternate;
         }
         @keyframes glow { from { text-shadow: 0 0 20px rgba(255,255,255,0.5); } to { text-shadow: 0 0 40px rgba(255,255,255,0.8); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 1000px; margin: 0 auto;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(12px);
+            border-radius: 20px; padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             animation: fadeIn 1.5s ease-out;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* === ESTILO DO ACORDEÃO === */
-        details {
-            background: rgba(255, 255, 255, 0.2);
-            margin: 15px 0;
-            border-radius: 15px;
-            border-left: 5px solid #feca57;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        details:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(10px);
-            border-left-color: #ff6b6b;
-        }
-        summary {
-            padding: 18px;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #fff;
-            list-style: none;
-            position: relative;
-            outline: none;
-        }
-        summary::after {
-            content: '\f078'; /* Ícone de seta para baixo (Font Awesome) */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: transform 0.3s ease;
-            color: #feca57;
-        }
-        details[open] summary::after {
-            content: '\f077'; /* Ícone de seta para cima */
-            color: #ff6b6b;
-        }
-        .resposta {
-            padding: 0 18px 18px 18px;
-            font-size: 1rem;
-            color: #f0f0f0;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 0 0 15px 15px;
+        /* ---------- GRID DE CARDS ---------- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
         }
 
-        .form-container {
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            border: 2px dashed rgba(255, 255, 255, 0.4);
+        /* ---------- CARD (ACORDEÃO) ---------- */
+        details.card {
+            background: rgba(255,255,255,0.22);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-            color: #fff;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #f0f0f0;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            font-size: 1rem;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s;
-        }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 0 15px rgba(72, 219, 251, 0.5);
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-        .btn-enviar {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, #48dbfb, #1dd1a1);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
+        details.card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.3); }
+
+        summary {
+            padding: 16px 20px;
             font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
             cursor: pointer;
-            transition: all 0.4s;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            list-style: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        summary::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: #feca57;
+            transition: transform 0.3s ease;
+        }
+        details[open] summary::after {
+            content: '\f077';
+            color: #ff6b6b;
+            transform: rotate(180deg);
+        }
+
+        .resposta {
+            padding: 0 20px 18px;
+            font-size: 0.95rem;
+            color: #f0f0f0;
+            background: rgba(0,0,0,0.12);
+            line-height: 1.5;
+        }
+
+        /* ---------- FORMULÁRIO ---------- */
+        .form-container {
+            margin-top: 40px; padding: 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 18px;
+            border: 2px dashed rgba(255,255,255,0.4);
+        }
+        .form-container h2 { text-align: center; margin-bottom: 20px; font-size: 1.6rem; color: #fff; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #f0f0f0; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; border: none; border-radius: 12px;
+            background: rgba(255,255,255,0.25); color: white; font-size: 1rem;
+            backdrop-filter: blur(8px); transition: all 0.3s;
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.7); }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none; background: rgba(255,255,255,0.35);
+            box-shadow: 0 0 15px rgba(72,219,251,0.5);
+        }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .btn-enviar {
+            display: block; width: 100%; padding: 14px;
+            background: linear-gradient(45deg, #48dbfb, #1dd1a1); color: white;
+            border: none; border-radius: 50px; font-weight: bold; font-size: 1.1rem;
+            cursor: pointer; transition: all 0.4s; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         .btn-enviar:hover {
             background: linear-gradient(45deg, #1dd1a1, #48dbfb);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.4);
         }
+
         .voltar {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.4s;
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 30px;
+            padding: 12px 25px; background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px); border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50px; color: white; text-decoration: none;
+            font-weight: bold; transition: all 0.4s;
         }
-        .voltar:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-            border-color: #ff6b6b;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-        }
+        .voltar:hover { background: rgba(255,255,255,0.4); transform: scale(1.05); border-color: #ff6b6b; }
+
+        footer { text-align: center; margin-top: 50px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .form-container h2 { font-size: 1.4rem; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -196,138 +144,174 @@
     <header>
         <h1>Catálogo de Perguntas</h1>
     </header>
-    <div class="container">
-        <!-- === 32 PERGUNTAS COM ACORDEÃO === -->
-        <details>
-            <summary>Como ligar um LED com Arduino?</summary>
-            <div class="resposta">Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</div>
-        </details>
-        <details>
-            <summary>Qual a diferença entre servo e motor DC?</summary>
-            <div class="resposta">Servo controla ângulo com precisão. Motor DC gira continuamente.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor ultrassônico HC-SR04?</summary>
-            <div class="resposta">Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</div>
-        </details>
-        <details>
-            <summary>Como usar um botão com Arduino?</summary>
-            <div class="resposta">Conecte uma perna ao 5V, outra ao pino digital + resistor pull-down 10kΩ ao GND.</div>
-        </details>
-        <details>
-            <summary>O que é PWM e como usar?</summary>
-            <div class="resposta">PWM simula sinal analógico. Use <code>analogWrite(pino, 0-255)</code> em pinos com ~.</div>
-        </details>
-        <details>
-            <summary>Como ler sensor de temperatura LM35?</summary>
-            <div class="resposta">Conecte saída ao pino analógico. Valor = <code>analogRead(A0) * 0.488</code> → °C.</div>
-        </details>
-        <details>
-            <summary>Como controlar um relé com Arduino?</summary>
-            <div class="resposta">Use transistor NPN (ex: BC547) ou módulo relé. Acione com <code>digitalWrite()</code>.</div>
-        </details>
-        <details>
-            <summary>Qual a diferença entre analogRead e digitalRead?</summary>
-            <div class="resposta"><code>analogRead</code>: 0-1023 (10 bits). <code>digitalRead</code>: HIGH ou LOW.</div>
-        </details>
-        <details>
-            <summary>Como usar display LCD 16x2 com I2C?</summary>
-            <div class="resposta">Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</div>
-        </details>
-        <details>
-            <summary>Como conectar múltiplos sensores?</summary>
-            <div class="resposta">Use pinos diferentes ou barramento I2C (mesmo endereço? Mude com jumper A0/A1).</div>
-        </details>
-        <details>
-            <summary>Como usar o Serial Monitor?</summary>
-            <div class="resposta">No <code>setup()</code>: <code>Serial.begin(9600)</code>. Envie com <code>Serial.println()</code>.</div>
-        </details>
-        <details>
-            <summary>Como evitar "ruído" em sensores analógicos?</summary>
-            <div class="resposta">Use capacitor 0.1µF entre pino e GND + média de várias leituras.</div>
-        </details>
-        <details>
-            <summary>Como usar buzzer com Arduino?</summary>
-            <div class="resposta">Conecte perna longa ao pino digital, curta ao GND. Use <code>tone(pino, frequência)</code>.</div>
-        </details>
-        <details>
-            <summary>Como fazer um LED piscar?</summary>
-            <div class="resposta">Use <code>digitalWrite(LED, HIGH); delay(500); digitalWrite(LED, LOW); delay(500);</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar potenciômetro?</summary>
-            <div class="resposta">Conecte terminal central ao pino analógico (A0). Outros dois: 5V e GND.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor de luz (LDR)?</summary>
-            <div class="resposta">Divisor de tensão com resistor 10kΩ. Leia com <code>analogRead()</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar módulo Bluetooth HC-05?</summary>
-            <div class="resposta">Conecte TX → RX Arduino, RX → TX. Use <code>SoftwareSerial</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar cartão SD com Arduino?</summary>
-            <div class="resposta">Use biblioteca <code>SD</code>. Pino CS geralmente no 4 (Uno) ou 10 (Mega).</div>
-        </details>
-        <details>
-            <summary>Como usar motor de passo?</summary>
-            <div class="resposta">Use driver ULN2003 ou A4988. Controle com biblioteca <code>Stepper</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor PIR (movimento)?</summary>
-            <div class="resposta">Conecte saída ao pino digital. Leia com <code>digitalRead()</code>. Tem delay interno.</div>
-        </details>
-        <details>
-            <summary>Como usar joystick analógico?</summary>
-            <div class="resposta">X → A0, Y → A1, SW (botão) → pino digital com pull-up.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor de umidade do solo?</summary>
-            <div class="resposta">Conecte saída analógica ao A0. Valores: seco (~1023), úmido (~300).</div>
-        </details>
-        <details>
-            <summary>Como usar RTC DS3231?</summary>
-            <div class="resposta">Conecte via I2C. Use biblioteca <code>RTClib</code>. Muito preciso!</div>
-        </details>
-        <details>
-            <summary>Como usar matriz de LED 8x8?</summary>
-            <div class="resposta">Use driver MAX7219. Biblioteca <code>LedControl</code>. Fácil de animar!</div>
-        </details>
-        <details>
-            <summary>Como usar ESP8266 com Arduino?</summary>
-            <div class="resposta">Conecte via Serial (TX/RX). Use <code>AT commands</code> ou como WiFi shield.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor de gás MQ-2?</summary>
-            <div class="resposta">Conecte AO ao pino analógico. Calibre em ar limpo antes.</div>
-        </details>
-        <details>
-            <summary>Como usar interrupt com botão?</summary>
-            <div class="resposta">Use <code>attachInterrupt(digitalPinToInterrupt(pino), funcao, RISING)</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar EEPROM do Arduino?</summary>
-            <div class="resposta">Inclua <code>#include &lt;EEPROM.h&gt;</code>. Salve com <code>EEPROM.write(addr, val)</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar millis() em vez de delay()?</summary>
-            <div class="resposta">Evita travar o código. Ex: <code>if (millis() - ultimaVez >= 1000) { ... }</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor de cor TCS3200?</summary>
-            <div class="resposta">Selecione filtro (S2/S3), leia frequência com <code>pulseIn()</code>.</div>
-        </details>
-        <details>
-            <summary>Como usar shield Ethernet?</summary>
-            <div class="resposta">Use biblioteca <code>Ethernet</code>. Configure IP fixo ou DHCP.</div>
-        </details>
-        <details>
-            <summary>Como usar sensor de inclinação?</summary>
-            <div class="resposta">Saída digital: HIGH quando inclinado. Use como botão.</div>
-        </details>
 
-        <!-- Formulário -->
+    <div class="container">
+        <!-- GRID DE CARDS -->
+        <div class="cards-grid">
+
+            <details class="card">
+                <summary>Como ligar um LED com Arduino?</summary>
+                <div class="resposta">Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</div>
+            </details>
+
+            <details class="card">
+                <summary>Qual a diferença entre servo e motor DC?</summary>
+                <div class="resposta">Servo controla ângulo com precisão. Motor DC gira continuamente.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor ultrassônico HC-SR04?</summary>
+                <div class="resposta">Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar um botão com Arduino?</summary>
+                <div class="resposta">Conecte uma perna ao 5V, outra ao pino digital + resistor pull-down 10kΩ ao GND.</div>
+            </details>
+
+            <details class="card">
+                <summary>O que é PWM e como usar?</summary>
+                <div class="resposta">PWM simula sinal analógico. Use <code>analogWrite(pino, 0-255)</code> em pinos com ~.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como ler sensor de temperatura LM35?</summary>
+                <div class="resposta">Conecte saída ao pino analógico. Valor = <code>analogRead(A0) * 0.488</code> → °C.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como controlar um relé com Arduino?</summary>
+                <div class="resposta">Use transistor NPN (ex: BC547) ou módulo relé. Acione com <code>digitalWrite()</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Qual a diferença entre analogRead e digitalRead?</summary>
+                <div class="resposta"><code>analogRead</code>: 0-1023 (10 bits). <code>digitalRead</code>: HIGH ou LOW.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar display LCD 16x2 com I2C?</summary>
+                <div class="resposta">Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como conectar múltiplos sensores?</summary>
+                <div class="resposta">Use pinos diferentes ou barramento I2C (mesmo endereço? Mude com jumper A0/A1).</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar o Serial Monitor?</summary>
+                <div class="resposta">No <code>setup()</code>: <code>Serial.begin(9600)</code>. Envie com <code>Serial.println()</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como evitar "ruído" em sensores analógicos?</summary>
+                <div class="resposta">Use capacitor 0.1µF entre pino e GND + média de várias leituras.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar buzzer com Arduino?</summary>
+                <div class="resposta">Conecte perna longa ao pino digital, curta ao GND. Use <code>tone(pino, frequência)</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como fazer um LED piscar?</summary>
+                <div class="resposta">Use <code>digitalWrite(LED, HIGH); delay(500); digitalWrite(LED, LOW); delay(500);</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar potenciômetro?</summary>
+                <div class="resposta">Conecte terminal central ao pino analógico (A0). Outros dois: 5V e GND.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor de luz (LDR)?</summary>
+                <div class="resposta">Divisor de tensão com resistor 10kΩ. Leia com <code>analogRead()</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar módulo Bluetooth HC-05?</summary>
+                <div class="resposta">Conecte TX → RX Arduino, RX → TX. Use <code>SoftwareSerial</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar cartão SD com Arduino?</summary>
+                <div class="resposta">Use biblioteca <code>SD</code>. Pino CS geralmente no 4 (Uno) ou 10 (Mega).</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar motor de passo?</summary>
+                <div class="resposta">Use driver ULN2003 ou A4988. Controle com biblioteca <code>Stepper</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor PIR (movimento)?</summary>
+                <div class="resposta">Conecte saída ao pino digital. Leia com <code>digitalRead()</code>. Tem delay interno.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar joystick analógico?</summary>
+                <div class="resposta">X → A0, Y → A1, SW (botão) → pino digital com pull-up.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor de umidade do solo?</summary>
+                <div class="resposta">Conecte saída analógica ao A0. Valores: seco (~1023), úmido (~300).</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar RTC DS3231?</summary>
+                <div class="resposta">Conecte via I2C. Use biblioteca <code>RTClib</code>. Muito preciso!</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar matriz de LED 8x8?</summary>
+                <div class="resposta">Use driver MAX7219. Biblioteca <code>LedControl</code>. Fácil de animar!</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar ESP8266 com Arduino?</summary>
+                <div class="resposta">Conecte via Serial (TX/RX). Use <code>AT commands</code> ou como WiFi shield.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor de gás MQ-2?</summary>
+                <div class="resposta">Conecte AO ao pino analógico. Calibre em ar limpo antes.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar interrupt com botão?</summary>
+                <div class="resposta">Use <code>attachInterrupt(digitalPinToInterrupt(pino), funcao, RISING)</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar EEPROM do Arduino?</summary>
+                <div class="resposta">Inclua <code>#include &lt;EEPROM.h&gt;</code>. Salve com <code>EEPROM.write(addr, val)</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar millis() em vez de delay()?</summary>
+                <div class="resposta">Evita travar o código. Ex: <code>if (millis() - ultimaVez >= 1000) { ... }</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor de cor TCS3200?</summary>
+                <div class="resposta">Selecione filtro (S2/S3), leia frequência com <code>pulseIn()</code>.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar shield Ethernet?</summary>
+                <div class="resposta">Use biblioteca <code>Ethernet</code>. Configure IP fixo ou DHCP.</div>
+            </details>
+
+            <details class="card">
+                <summary>Como usar sensor de inclinação?</summary>
+                <div class="resposta">Saída digital: HIGH quando inclinado. Use como botão.</div>
+            </details>
+
+        </div>
+
+        <!-- FORMULÁRIO -->
         <div class="form-container">
             <h2>Não achou sua dúvida? Envie aqui!</h2>
             <form id="formPergunta" onsubmit="enviarPergunta(event)">
@@ -343,37 +327,25 @@
                     <label for="pergunta">Sua Pergunta</label>
                     <textarea id="pergunta" placeholder="Descreva sua dúvida com detalhes..." required></textarea>
                 </div>
-                <button type="submit" class="btn-enviar">
-                    Enviar Pergunta
-                </button>
+                <button type="submit" class="btn-enviar">Enviar Pergunta</button>
             </form>
         </div>
-        <a href="index.html" class="voltar">
-            Voltar ao Início
-        </a>
-    </div>
-    <footer>
-        <p>© 2025 Dicas Práticas</p>
-    </footer>
 
-    <!-- Script do formulário -->
+        <a href="index.html" class="voltar">Voltar ao Início</a>
+    </div>
+
+    <footer><p>© 2025 Dicas Práticas</p></footer>
+
+    <!-- SCRIPT DO FORMULÁRIO -->
     <script>
         function enviarPergunta(event) {
             event.preventDefault();
             const nome = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim();
             const pergunta = document.getElementById('pergunta').value.trim();
-            if (!nome || !email || !pergunta) {
-                alert('Preencha todos os campos!');
-                return;
-            }
+            if (!nome || !email || !pergunta) { alert('Preencha todos os campos!'); return; }
             const assunto = encodeURIComponent(`[DÚVIDA] Pergunta de ${nome}`);
-            const corpo = encodeURIComponent(
-                `Nome: ${nome}\n` +
-                `E-mail: ${email}\n\n` +
-                `Pergunta:\n${pergunta}\n\n` +
-                `---\nEnviado via Dicas Práticas`
-            );
+            const corpo = encodeURIComponent(`Nome: ${nome}\nE-mail: ${email}\n\nPergunta:\n${pergunta}\n\n---\nEnviado via Dicas Práticas`);
             const mailtoLink = `mailto:julio.2024123@aluno.pedreira.org?subject=${assunto}&body=${corpo}`;
             window.location.href = mailtoLink;
             setTimeout(() => {
@@ -383,30 +355,24 @@
         }
     </script>
 
-    <!-- Efeito de partículas -->
+    <!-- EFEITO DE PARTÍCULAS -->
     <script>
         document.addEventListener('mousemove', (e) => {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = '6px';
-            particle.style.height = '6px';
-            particle.style.background = 'rgba(255, 255, 255, 0.6)';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.left = e.pageX + 'px';
-            particle.style.top = e.pageY + 'px';
-            particle.style.animation = 'float 1s ease-out forwards';
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 1000);
+            const p = document.createElement('div');
+            p.style.position = 'absolute';
+            p.style.width = p.style.height = '6px';
+            p.style.background = 'rgba(255,255,255,0.6)';
+            p.style.borderRadius = '50%';
+            p.style.pointerEvents = 'none';
+            p.style.left = e.pageX + 'px';
+            p.style.top = e.pageY + 'px';
+            p.style.animation = 'float 1s ease-out forwards';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 1000);
         });
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes float {
-                0% { transform: translateY(0) scale(1); opacity: 0.8; }
-                100% { transform: translateY(-100px) scale(0); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
+        const s = document.createElement('style');
+        s.innerHTML = `@keyframes float { 0% { transform: translateY(0) scale(1); opacity: .8; } 100% { transform: translateY(-100px) scale(0); opacity: 0; } }`;
+        document.head.appendChild(s);
     </script>
 </body>
 </html>
