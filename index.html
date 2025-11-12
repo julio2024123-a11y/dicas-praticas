@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Perguntas - Dicas Práticas</title>
+    <title>Dicas Práticas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,258 +14,145 @@
             animation: gradientShift 15s ease infinite;
             color: #fff;
             min-height: 100vh;
-            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
-        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         header {
             text-align: center;
             margin-bottom: 40px;
             animation: fadeInDown 1s ease-out;
         }
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
-            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #1dd1a1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            margin-bottom: 10px;
             animation: glow 2s infinite alternate;
         }
-        @keyframes glow { from { text-shadow: 0 0 20px rgba(255,255,255,0.5); } to { text-shadow: 0 0 40px rgba(255,255,255,0.8); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1.5s ease-out;
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(72, 219, 251, 0.6); }
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Lista de perguntas */
-        .pergunta {
-            background: rgba(255, 255, 255, 0.2);
-            margin: 15px 0;
-            padding: 18px;
-            border-radius: 15px;
-            border-left: 5px solid #feca57;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .pergunta:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(10px);
-            border-left-color: #ff6b6b;
-        }
-        .pergunta h3 {
-            margin: 0 0 8px 0;
-            color: #fff;
+        .subtitle {
             font-size: 1.3rem;
-        }
-        .pergunta p {
-            margin: 0;
-            font-size: 1rem;
-            color: #f0f0f0;
-        }
-
-        /* Formulário de nova pergunta */
-        .form-container {
-            margin-top: 40px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 18px;
-            border: 2px dashed rgba(255, 255, 255, 0.4);
-        }
-        .form-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
+            font-style: italic;
             color: #fff;
+            opacity: 0.9;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            margin: 0 auto;
+            width: 0;
+            animation: typing 3.5s steps(40) 1s forwards, blink 0.75s step-end infinite;
         }
-        .form-group {
-            margin-bottom: 18px;
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #f0f0f0;
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: #fff; }
         }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            font-size: 1rem;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s;
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px 0;
         }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 0 15px rgba(72, 219, 251, 0.5);
-        }
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .btn-enviar {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, #48dbfb, #1dd1a1);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.4s;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        .btn-enviar:hover {
-            background: linear-gradient(45deg, #1dd1a1, #48dbfb);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .voltar {
-            display: inline-flex;
+        nav a {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background: rgba(255, 255, 255, 0.25);
+            gap: 10px;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 50px;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            transition: all 0.4s;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-        .voltar:hover {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.05);
-            border-color: #ff6b6b;
+        nav a i {
+            font-size: 1.3rem;
+            transition: transform 0.3s;
         }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            border-color: #fff;
+        }
+        nav a:hover i {
+            transform: rotate(360deg);
+        }
+        /* Cores no hover */
+        nav a:nth-child(1):hover { border-color: #ff6b6b; }   /* Catálogo */
+        nav a:nth-child(2):hover { border-color: #48dbfb; }   /* Projetos */
 
         footer {
+            margin-top: auto;
+            padding: 20px;
             text-align: center;
-            margin-top: 50px;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
+            animation: fadeIn 2s ease-out 1s forwards;
+            opacity: 0;
         }
-
+        @keyframes fadeIn {
+            to { opacity: 0.8; }
+        }
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .form-container h2 { font-size: 1.4rem; }
+            .subtitle { font-size: 1.1rem; }
+            nav { flex-direction: column; align-items: center; }
+            nav a { width: 80%; justify-content: center; }
         }
     </style>
 </head>
 <body>
-
     <header>
-        <h1>Catálogo de Perguntas</h1>
+        <h1>Dicas Práticas</h1>
+        <p class="subtitle">Se não conseguir tirar sua dúvida, leia novamente até entender!</p>
     </header>
 
-    <div class="container">
-
-        <!-- Perguntas existentes -->
-        <div class="pergunta">
-            <h3>Como ligar um LED com Arduino?</h3>
-            <p>Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Qual a diferença entre servo e motor DC?</h3>
-            <p>Servo controla ângulo com precisão. Motor DC gira continuamente.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como usar sensor ultrassônico HC-SR04?</h3>
-            <p>Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</p>
-        </div>
-
-        <!-- Formulário para nova pergunta -->
-        <div class="form-container">
-            <h2>Não achou sua dúvida? Envie aqui!</h2>
-            <form id="formPergunta" onsubmit="enviarPergunta(event)">
-                <div class="form-group">
-                    <label for="nome">Seu Nome</label>
-                    <input type="text" id="nome" placeholder="Ex: João Silva" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Seu E-mail</label>
-                    <input type="email" id="email" placeholder="Ex: joao@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="pergunta">Sua Pergunta</label>
-                    <textarea id="pergunta" placeholder="Descreva sua dúvida com detalhes..." required></textarea>
-                </div>
-                <button type="submit" class="btn-enviar">
-                    Enviar Pergunta
-                </button>
-            </form>
-        </div>
-
-        <a href="index.html" class="voltar">
-            Voltar ao Início
-        </a>
-    </div>
+    <main>
+        <nav>
+            <a href="./catalogo.html">
+                <i class="fas fa-book"></i> Catálogo de Perguntas
+            </a>
+            <a href="./progetos.html">
+                <i class="fas fa-robot"></i> Projetos de Robótica
+            </a>
+        </nav>
+    </main>
 
     <footer>
-        <p>© 2025 Dicas Práticas</p>
+        <p>© 2025 Dicas Práticas. Todos os direitos reservados.</p>
     </footer>
 
-    <!-- Script para montar o e-mail -->
     <script>
-        function enviarPergunta(event) {
-            event.preventDefault();
-
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const pergunta = document.getElementById('pergunta').value.trim();
-
-            if (!nome || !email || !pergunta) {
-                alert('Preencha todos os campos!');
-                return;
-            }
-
-            const assunto = encodeURIComponent(`[DÚVIDA] Pergunta de ${nome}`);
-            const corpo = encodeURIComponent(
-                `Nome: ${nome}\n` +
-                `E-mail: ${email}\n\n` +
-                `Pergunta:\n${pergunta}\n\n` +
-                `---\nEnviado via Dicas Práticas`
-            );
-
-            const mailtoLink = `mailto:julio.2024123@aluno.pedreira.org?subject=${assunto}&body=${corpo}`;
-            window.location.href = mailtoLink;
-
-            // Opcional: limpar formulário após envio
-            setTimeout(() => {
-                document.getElementById('formPergunta').reset();
-                alert('E-mail aberto! Envie a mensagem para confirmar.');
-            }, 500);
-        }
-    </script>
-
-    <!-- Efeito de partículas -->
-    <script>
+        // Efeito de partículas ao mover o mouse
         document.addEventListener('mousemove', (e) => {
             const particle = document.createElement('div');
             particle.style.position = 'absolute';
