@@ -17,6 +17,7 @@
             padding: 40px 20px;
         }
         @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -34,6 +35,7 @@
         }
         @keyframes glow { from { text-shadow: 0 0 20px rgba(255,255,255,0.5); } to { text-shadow: 0 0 40px rgba(255,255,255,0.8); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -45,6 +47,7 @@
             animation: fadeIn 1.5s ease-out;
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
         /* Lista de perguntas */
         .pergunta {
             background: rgba(255, 255, 255, 0.2);
@@ -70,6 +73,7 @@
             font-size: 1rem;
             color: #f0f0f0;
         }
+
         /* Formulário de nova pergunta */
         .form-container {
             margin-top: 40px;
@@ -119,6 +123,7 @@
             min-height: 120px;
             resize: vertical;
         }
+
         .btn-enviar {
             display: block;
             width: 100%;
@@ -138,6 +143,7 @@
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
+
         .voltar {
             display: inline-flex;
             align-items: center;
@@ -158,12 +164,14 @@
             transform: scale(1.05);
             border-color: #ff6b6b;
         }
+
         footer {
             text-align: center;
             margin-top: 50px;
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
         }
+
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .form-container h2 { font-size: 1.4rem; }
@@ -171,11 +179,14 @@
     </style>
 </head>
 <body>
+
     <header>
         <h1>Catálogo de Perguntas</h1>
     </header>
+
     <div class="container">
-        <!-- Perguntas existentes + novas -->
+
+        <!-- Perguntas existentes -->
         <div class="pergunta">
             <h3>Como ligar um LED com Arduino?</h3>
             <p>Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</p>
@@ -187,42 +198,6 @@
         <div class="pergunta">
             <h3>Como usar sensor ultrassônico HC-SR04?</h3>
             <p>Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como usar um botão com Arduino?</h3>
-            <p>Conecte uma perna ao 5V, outra ao pino digital + resistor pull-down 10kΩ ao GND.</p>
-        </div>
-        <div class="pergunta">
-            <h3>O que é PWM e como usar?</h3>
-            <p>PWM simula sinal analógico. Use <code>analogWrite(pino, 0-255)</code> em pinos com ~.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como ler sensor de temperatura LM35?</h3>
-            <p>Conecte saída ao pino analógico. Valor = <code>analogRead(A0) * 0.488</code> → °C.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como controlar um relé com Arduino?</h3>
-            <p>Use transistor NPN (ex: BC547) ou módulo relé. Acione com <code>digitalWrite()</code>.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Qual a diferença entre analogRead e digitalRead?</h3>
-            <p><code>analogRead</code>: 0-1023 (10 bits). <code>digitalRead</code>: HIGH ou LOW.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como usar display LCD 16x2 com I2C?</h3>
-            <p>Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como conectar múltiplos sensores?</h3>
-            <p>Use pinos diferentes ou barramento I2C (mesmo endereço? Mude com jumper A0/A1).</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como usar o Serial Monitor?</h3>
-            <p>No <code>setup()</code>: <code>Serial.begin(9600)</code>. Envie com <code>Serial.println()</code>.</p>
-        </div>
-        <div class="pergunta">
-            <h3>Como evitar "ruído" em sensores analógicos?</h3>
-            <p>Use capacitor 0.1µF entre pino e GND + média de várias leituras.</p>
         </div>
 
         <!-- Formulário para nova pergunta -->
@@ -246,10 +221,12 @@
                 </button>
             </form>
         </div>
+
         <a href="index.html" class="voltar">
             Voltar ao Início
         </a>
     </div>
+
     <footer>
         <p>© 2025 Dicas Práticas</p>
     </footer>
@@ -258,13 +235,16 @@
     <script>
         function enviarPergunta(event) {
             event.preventDefault();
+
             const nome = document.getElementById('nome').value.trim();
             const email = document.getElementById('email').value.trim();
             const pergunta = document.getElementById('pergunta').value.trim();
+
             if (!nome || !email || !pergunta) {
                 alert('Preencha todos os campos!');
                 return;
             }
+
             const assunto = encodeURIComponent(`[DÚVIDA] Pergunta de ${nome}`);
             const corpo = encodeURIComponent(
                 `Nome: ${nome}\n` +
@@ -272,8 +252,11 @@
                 `Pergunta:\n${pergunta}\n\n` +
                 `---\nEnviado via Dicas Práticas`
             );
+
             const mailtoLink = `mailto:julio.2024123@aluno.pedreira.org?subject=${assunto}&body=${corpo}`;
             window.location.href = mailtoLink;
+
+            // Opcional: limpar formulário após envio
             setTimeout(() => {
                 document.getElementById('formPergunta').reset();
                 alert('E-mail aberto! Envie a mensagem para confirmar.');
