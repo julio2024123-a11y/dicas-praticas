@@ -87,17 +87,17 @@
             line-height: 1.5;
         }
 
-        /* Botão de e-mail */
+        /* BOTÃO QUE ABRE O GMAIL */
         .email-section {
             text-align: center;
             margin: 50px 0 30px;
         }
         .btn-email {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 22px 60px;
             background: linear-gradient(45deg, #ff6b6b, #feca57);
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             text-decoration: none;
             border-radius: 60px;
@@ -105,11 +105,11 @@
             transition: all 0.4s ease;
         }
         .btn-email:hover {
-            transform: translateY(-6px);
+            transform: translateY(-7px);
             background: linear-gradient(45deg, #feca57, #ff6b6b);
-            box-shadow: 0 18px 45px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .btn-email i { margin-right: 15px; }
+        .btn-email i { margin-right: 15px; font-size: 1.8rem; vertical-align: middle; }
 
         .voltar {
             display: inline-flex; align-items: center; gap: 8px; margin-top: 30px;
@@ -125,7 +125,7 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
             .cards-grid { grid-template-columns: 1fr; }
-            .btn-email { font-size: 1.3rem; padding: 18px 40px; }
+            .btn-email { font-size: 1.4rem; padding: 18px 40px; }
         }
     </style>
 </head>
@@ -136,7 +136,7 @@
 
     <div class="container">
         <div class="cards-grid">
-
+            <!-- Todas as 32 perguntas continuam aqui (iguais ao anterior) -->
             <details class="card"><summary>Como ligar um LED com Arduino?</summary><div class="resposta">Use resistor de 220Ω, conecte o anodo ao pino digital e o catodo ao GND.</div></details>
             <details class="card"><summary>Qual a diferença entre servo e motor DC?</summary><div class="resposta">Servo controla ângulo com precisão. Motor DC gira continuamente.</div></details>
             <details class="card"><summary>Como usar sensor ultrassônico HC-SR04?</summary><div class="resposta">Trig → pulso de 10µs, Echo → mede tempo de retorno do pulso.</div></details>
@@ -145,7 +145,7 @@
             <details class="card"><summary>Como ler sensor de temperatura LM35?</summary><div class="resposta">Conecte saída ao pino analógico. Valor = <code>analogRead(A0) * 0.488</code> → °C.</div></details>
             <details class="card"><summary>Como controlar um relé com Arduino?</summary><div class="resposta">Use transistor NPN (ex: BC547) ou módulo relé. Acione com <code>digitalWrite()</code>.</div></details>
             <details class="card"><summary>Qual a diferença entre analogRead e digitalRead?</summary><div class="resposta"><code>analogRead</code>: 0-1023 (10 bits). <code>digitalRead</code>: HIGH ou LOW.</div></details>
-            <details class="card"><summary>Como usar display LCD 16x2 com I2C?</summary><div class="resposta">Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</div></details>
+            <details class="card"><summary>Como usar display LCD 16x2 com I2C?</summary><div class="resposta">Use biblioteca <code>LiquidCrystal_I2C</code>. Endereço comum: 0x27 ou 0x3F.</div></div></details>
             <details class="card"><summary>Como conectar múltiplos sensores?</summary><div class="resposta">Use pinos diferentes ou barramento I2C (mesmo endereço? Mude com jumper A0/A1).</div></details>
             <details class="card"><summary>Como usar o Serial Monitor?</summary><div class="resposta">No <code>setup()</code>: <code>Serial.begin(9600)</code>. Envie com <code>Serial.println()</code>.</div></details>
             <details class="card"><summary>Como evitar "ruído" em sensores analógicos?</summary><div class="resposta">Use capacitor 0.1µF entre pino e GND + média de várias leituras.</div></details>
@@ -169,17 +169,17 @@
             <details class="card"><summary>Como usar sensor de cor TCS3200?</summary><div class="resposta">Selecione filtro (S2/S3), leia frequência com <code>pulseIn()</code>.</div></details>
             <details class="card"><summary>Como usar shield Ethernet?</summary><div class="resposta">Use biblioteca <code>Ethernet</code>. Configure IP fixo ou DHCP.</div></details>
             <details class="card"><summary>Como usar sensor de inclinação?</summary><div class="resposta">Saída digital: HIGH quando inclinado. Use como botão.</div></details>
-
         </div>
 
-        <!-- Botão para enviar dúvidas por e-mail -->
+        <!-- BOTÃO QUE ABRE DIRETO O GMAIL -->
         <div class="email-section">
-            <a href="mailto:julio.2024123@aluno.pedreira.org?subject=D%C3%BAVIDA%20-%20Cat%C3%A1logo%20de%20Perguntas" 
+            <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=julio.2024123@aluno.pedreira.org&su=D%C3%9AVIDA%20-%20Cat%C3%A1logo%20de%20Perguntas&body=Ol%C3%A1%20J%C3%BAlio%2C%0A%0AMinha%20d%C3%BAvida%20%C3%A9%3A%0A%0A%5BEscreva%20aqui%20sua%20pergunta%5D%0A%0AObrigado%21" 
+               target="_blank" 
                class="btn-email">
-                <i class="fas fa-envelope"></i> Perguntas no E-mail
+                <i class="fas fa-envelope"></i> Perguntas no E-mail (abre Gmail)
             </a>
-            <p style="margin-top: 18px; opacity: 0.9; font-size: 1.1rem;">
-                Não encontrou sua dúvida? Clique acima e envie por e-mail!
+            <p style="margin-top: 20px; opacity: 0.9; font-size: 1.1rem;">
+                Não encontrou sua dúvida? Clique no botão acima e o Gmail vai abrir já preenchido!
             </p>
         </div>
 
@@ -188,7 +188,7 @@
 
     <footer><p>© 2025 Dicas Práticas</p></footer>
 
-    <!-- Efeito de partículas no mouse (mantido) -->
+    <!-- Efeito de partículas -->
     <script>
         document.addEventListener('mousemove', (e) => {
             const p = document.createElement('div');
